@@ -1,5 +1,5 @@
 # Import Ubuntu
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # Make /app dir
 RUN mkdir /app
