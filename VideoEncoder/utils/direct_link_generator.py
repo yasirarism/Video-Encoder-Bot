@@ -33,7 +33,6 @@ from os import popen
 from random import choice
 from urllib.parse import urlparse
 
-import cfscrape
 import lk21
 import requests
 from bs4 import BeautifulSoup
@@ -326,26 +325,6 @@ def streamtape(url: str) -> str:
              https://github.com/SlamDevs/slam-mirrorbot """
     bypasser = lk21.Bypass()
     dl_url = bypasser.bypass_streamtape(url)
-    return dl_url
-
-
-def racaty(url: str) -> str:
-    """ Racaty direct links generator
-    based on https://github.com/Slam-Team/slam-mirrorbot """
-    dl_url = ''
-    try:
-        link = re.findall(r'\bhttps?://.*racaty\.net\S+', url)[0]
-    except IndexError:
-        raise DirectDownloadLinkException("No Racaty links found\n")
-    scraper = cfscrape.create_scraper()
-    r = scraper.get(url)
-    soup = BeautifulSoup(r.text, "lxml")
-    op = soup.find("input", {"name": "op"})["value"]
-    ids = soup.find("input", {"name": "id"})["value"]
-    rpost = scraper.post(url, data={"op": op, "id": ids})
-    rsoup = BeautifulSoup(rpost.text, "lxml")
-    dl_url = rsoup.find("a", {"id": "uniqueExpirylink"})[
-        "href"].replace(" ", "%20")
     return dl_url
 
 
