@@ -18,7 +18,7 @@ motor
 # Others
 psutil
 js2py
-cfscrape
+cloudscraper
 lk21
 lxml
 httpx
